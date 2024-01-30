@@ -17,7 +17,8 @@ int main()
         graph[x].push_back({y, w});
     }
 
-    int start = 2;
+    int start = 1;
+    int goal = 9;
 
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     vector<int> dist(n, INT_MAX);
@@ -31,6 +32,9 @@ int main()
         int u = pq.top().second;
         pq.pop();
 
+        if (u == goal)
+            break;
+
         for (auto adj : graph[u])
         {
             int v = adj.first;
@@ -43,4 +47,8 @@ int main()
             }
         }
     }
+
+    cout << "Minimum Distance to Goal: " << dist[goal] << endl;
+
+    return 0;
 }
